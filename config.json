@@ -3,7 +3,9 @@
     "worker_count": 4,
     "chunk_size": 10000,
     "max_workers": 8,
-    "timeout_seconds": 300
+    "timeout_seconds": 300,
+    "worker_timeout": 5,
+    "collector_check_interval": 2
   },
   "hash": {
     "algorithm": "SHA256",

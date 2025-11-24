@@ -43,8 +43,10 @@ class Worker(Process):
         timer = Timer()
         timer.start()
         
+        timeout = self.config['general'].get('worker_timeout', 5)
+        
         while True:
-            task = self.task_queue.get(timeout=5)
+            task = self.task_queue.get(timeout=timeout)
             
             if task is TaskQueue.POISON_PILL:
                 logger.debug(f"Worker {self.worker_id} received poison pill")

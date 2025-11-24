@@ -15,7 +15,7 @@ class Collector(Process):
         self.results_dict = results_dict
         self.config = config
         self.results_path = config['output']['results_path']
-        self.check_interval = 2
+        self.check_interval = config['general'].get('collector_check_interval', 2)
     
     def run(self) -> None:
         """Main collector process loop."""

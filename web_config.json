@@ -1,0 +1,20 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": 8080
+  },
+  "paths": {
+    "web_root": "web",
+    "html_file": "web/index.html",
+    "temp_csv_prefix": "temp_input",
+    "temp_config_prefix": "temp_config"
+  },
+  "output": {
+    "log_path": "logs/web_hasher.log",
+    "results_path": "logs/web_results.json"
+  },
+  "defaults": {
+    "encoding": "utf-8",
+    "worker_timeout": 5
+  }
+}

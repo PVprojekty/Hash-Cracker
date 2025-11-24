@@ -16,6 +16,30 @@ from src.main import HashCrackingPipeline
 from src.config_loader import ConfigLoader
 
 
+# Load web server configuration
+def load_web_config():
+    """Load web server configuration"""
+    config_path = 'web_config.json'
+    if os.path.exists(config_path):
+        with open(config_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {
+        'server': {'host': 'localhost', 'port': 8080},
+        'paths': {
+            'html_file': 'web/index.html',
+            'temp_csv_prefix': 'temp_input',
+            'temp_config_prefix': 'temp_config'
+        },
+        'output': {
+            'log_path': 'logs/web_hasher.log',
+            'results_path': 'logs/web_results.json'
+        },
+        'defaults': {'encoding': 'utf-8', 'worker_timeout': 5}
+    }
+
+WEB_CONFIG = load_web_config()
+
+
 class HashServerHandler(BaseHTTPRequestHandler):
     
     def do_GET(self):
@@ -27,7 +51,8 @@ class HashServerHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/html')
             self.end_headers()
             
-            with open('web/index.html', 'rb') as f:
+            html_file = WEB_CONFIG['paths']['html_file']
+            with open(html_file, 'rb') as f:
                 self.wfile.write(f.read())
         else:
             self.send_response(404)
@@ -66,12 +91,20 @@ class HashServerHandler(BaseHTTPRequestHandler):
     
     def run_pipeline(self, csv_data, config):
         """Run the hash cracking pipeline"""
-        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.csv') as csv_file:
+        encoding = WEB_CONFIG['defaults']['encoding']
+        csv_prefix = WEB_CONFIG['paths']['temp_csv_prefix']
+        config_prefix = WEB_CONFIG['paths']['temp_config_prefix']
+        
+        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.csv', 
+                                         prefix=csv_prefix, encoding=encoding) as csv_file:
             csv_file.write(csv_data)
             csv_path = csv_file.name
         
-        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.json') as config_file:
+        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.json',
+                                         prefix=config_prefix, encoding=encoding) as config_file:
             config['input']['csv_path'] = csv_path
+            config['output']['log_path'] = WEB_CONFIG['output']['log_path']
+            config['output']['results_path'] = WEB_CONFIG['output']['results_path']
             json.dump(config, config_file, indent=2)
             config_path = config_file.name
         
@@ -127,14 +160,15 @@ class HashServerHandler(BaseHTTPRequestHandler):
 
 def main():
     """Start web server"""
-    port = 8080
-    server_address = ('', port)
+    host = WEB_CONFIG['server']['host']
+    port = WEB_CONFIG['server']['port']
+    server_address = (host, port)
     httpd = HTTPServer(server_address, HashServerHandler)
     
     print("=" * 60)
     print("Parallel Hash Cracking Engine - Web UI")
     print("=" * 60)
-    print(f"\nServer běží na: http://localhost:{port}")
+    print(f"\nServer běží na: http://{host}:{port}")
     print("Pro ukončení stiskněte Ctrl+C\n")
     
     try:

@@ -282,7 +282,9 @@
                     worker_count: workers,
                     chunk_size: chunkSize,
                     max_workers: 8,
-                    timeout_seconds: timeout
+                    timeout_seconds: timeout,
+                    worker_timeout: 5,
+                    collector_check_interval: 2
                 },
                 hash: {
                     algorithm: algorithm,
@@ -290,13 +292,13 @@
                     pbkdf2_salt_length: 32
                 },
                 input: {
-                    csv_path: 'temp_input.csv',
+                    csv_path: '',
                     csv_encoding: 'utf-8',
                     csv_delimiter: ','
                 },
                 output: {
-                    log_path: 'logs/web_hasher.log',
-                    results_path: 'logs/web_results.json',
+                    log_path: '',
+                    results_path: '',
                     verbose: true
                 },
                 target: {
