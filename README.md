@@ -22,8 +22,11 @@ This engine leverages **true parallelism** through `multiprocessing.Process` to 
 
 - Python 3.7 or higher
 - Standard library only (no external dependencies)
+- **Cross-platform:** Works on Windows, macOS, and Linux
 
 ## Installation
+
+### All Platforms (Windows, macOS, Linux)
 
 1. Clone the repository:
 ```bash
@@ -34,14 +37,26 @@ cd Hasher
 2. No additional dependencies to install - uses Python standard library only!
 
 3. Quick test run:
+
+**Windows:**
+```cmd
+python bin\run.py
+```
+
+**macOS/Linux:**
 ```bash
-python run.py
+python3 bin/run.py
 ```
 
 ## Project Structure
 
 ```
 Hasher/
+├── bin/
+│   ├── run.py                     # Quick start script
+│   ├── demo_parallel.py           # Parallel processing demo
+│   ├── start_web.command          # Web UI launcher (macOS/Linux)
+│   └── start_web.bat              # Web UI launcher (Windows)
 ├── src/
 │   ├── main.py                    # Main pipeline orchestrator
 │   ├── config_loader.py           # Configuration management
@@ -114,14 +129,22 @@ Edit `config.json` to configure the engine:
 
 ### Web UI (Easiest)
 
-1. Start web server:
-```bash
+**Windows:**
+1. Double-click `bin\start_web.bat`
+2. Or run in Command Prompt:
+```cmd
 python web_server.py
 ```
 
-2. Open browser at `http://localhost:8080`
+**macOS/Linux:**
+1. Double-click `bin/start_web.command`
+2. Or run in Terminal:
+```bash
+python3 web_server.py
+```
 
-3. Enter data and hash, click "Start Search"
+3. Open browser at `http://localhost:8080`
+4. Enter data and hash, click "Start Search"
 
 ### Command Line Usage
 
