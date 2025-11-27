@@ -71,13 +71,16 @@ class Receiver:
                 for line_num, row in enumerate(reader, 1):
                     self.total_lines += 1
                     
+                    # Skip empty rows
                     if not row or len(row) == 0:
                         self.invalid_lines += 1
                         self.logger.debug(f"Empty row at line {line_num}")
                         continue
                     
+                    # Get first column and strip whitespace
                     record = row[0].strip()
                     
+                    # Skip empty or whitespace-only records
                     if not record:
                         self.invalid_lines += 1
                         self.logger.debug(f"Empty record at line {line_num}")
@@ -98,6 +101,9 @@ class Receiver:
             return []
         except PermissionError:
             self.logger.error(f"Permission denied: {self.csv_path}")
+            return []
+        except UnicodeDecodeError as e:
+            self.logger.error(f"Encoding error reading CSV: {e}. Try different encoding.")
             return []
         except Exception as e:
             self.logger.error(f"Error reading CSV: {e}")

@@ -32,15 +32,24 @@ class ConfigLoader:
             if section not in self.config:
                 raise ValueError(f"Missing required configuration section: {section}")
         
-        if self.config['general']['worker_count'] < 1:
+        # Validate worker_count
+        worker_count = self.config['general'].get('worker_count', 0)
+        if worker_count < 1:
             raise ValueError("worker_count must be at least 1")
         
-        if self.config['general']['chunk_size'] < 1:
+        if worker_count > 32:
+            print(f"Warning: worker_count={worker_count} is very high. Consider using fewer workers.")
+        
+        # Validate chunk_size
+        chunk_size = self.config['general'].get('chunk_size', 0)
+        if chunk_size < 1:
             raise ValueError("chunk_size must be at least 1")
         
+        # Validate algorithm
         valid_algorithms = ['SHA256', 'SHA384', 'SHA512', 'PBKDF2']
-        if self.config['hash']['algorithm'] not in valid_algorithms:
-            raise ValueError(f"Invalid hash algorithm. Must be one of: {valid_algorithms}")
+        algorithm = self.config['hash'].get('algorithm', '')
+        if algorithm not in valid_algorithms:
+            raise ValueError(f"Invalid hash algorithm '{algorithm}'. Must be one of: {valid_algorithms}")
     
     def get(self, *keys: str, default: Any = None) -> Any:
         """Get nested configuration value."""

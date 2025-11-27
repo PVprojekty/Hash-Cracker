@@ -20,7 +20,11 @@ class Validator:
         if not hash_value or not isinstance(hash_value, str):
             return False
         
-        hash_value = hash_value.lower()
+        # Remove whitespace and convert to lowercase
+        hash_value = hash_value.strip().lower()
+        
+        if not hash_value:
+            return False
         
         if algorithm == 'SHA256':
             return len(hash_value) == 64 and Validator._is_hex(hash_value)

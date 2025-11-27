@@ -27,6 +27,9 @@ class Hasher:
         Returns:
             Hexadecimal hash string
         """
+        if not isinstance(data, str):
+            raise TypeError(f"Data must be a string, got {type(data).__name__}")
+        
         if self.algorithm == 'PBKDF2':
             return self._pbkdf2_hash(data, salt)
         else:

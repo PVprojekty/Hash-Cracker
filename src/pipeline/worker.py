@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Worker Module
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Worker process for parallel hash computation and comparison
+"""
+
 from multiprocessing import Process
 from typing import Dict, Any, List
 from src.pipeline.hasher import Hasher

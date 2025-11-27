@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+Parallel Hash Cracking Engine - Main Pipeline
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Main orchestrator for parallel hash cracking using multiprocessing
+"""
 
 import sys
 import os
@@ -193,14 +200,20 @@ class HashCrackingPipeline:
         """Cleanup resources and terminate workers."""
         self.logger.info("Cleaning up...")
         
+        terminated_count = 0
         for worker in self.workers:
             if worker.is_alive():
                 worker.terminate()
                 worker.join(timeout=5)
+                terminated_count += 1
+        
+        if terminated_count > 0:
+            self.logger.info(f"Terminated {terminated_count} worker(s)")
         
         if self.collector and self.collector.is_alive():
             self.collector.terminate()
             self.collector.join(timeout=5)
+            self.logger.info("Terminated collector process")
 
 
 def main():

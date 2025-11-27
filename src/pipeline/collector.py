@@ -68,13 +68,16 @@ class Collector(Process):
             results_dict: Shared results dictionary
         
         Returns:
-            List of result dictionaries
+            List of result dictionaries sorted by worker_id
         """
         results = []
         
         for key, value in results_dict.items():
             if isinstance(value, dict) and 'original' in value:
                 results.append(value)
+        
+        # Sort results by worker_id for consistent output
+        results.sort(key=lambda x: (x.get('worker_id', 0), x.get('original', '')))
         
         return results
     

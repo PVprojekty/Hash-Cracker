@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Simple web server for Parallel Hash Cracking Engine UI
+Parallel Hash Cracking Engine - Web Server
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: HTTP server providing web UI interface for hash cracking engine
 """
 
 from http.server import HTTPServer, BaseHTTPRequestHandler

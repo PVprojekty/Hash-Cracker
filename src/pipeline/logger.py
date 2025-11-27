@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Logger Module
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Thread-safe logger implementation using multiprocessing.Lock
+"""
+
 import logging
 import os
 from multiprocessing import Lock
