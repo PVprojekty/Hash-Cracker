@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Hasher Module
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Hash computation engine supporting multiple cryptographic algorithms
+"""
+
 import hashlib
 import os
 from typing import Optional
