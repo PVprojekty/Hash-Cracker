@@ -30,8 +30,8 @@ This engine leverages **true parallelism** through `multiprocessing.Process` to 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Se8o/Hasher.git
-cd Hasher
+git clone https://github.com/PVprojekty/Hash-Cracker.git
+cd Hash-Cracker
 ```
 
 2. No additional dependencies to install - uses Python standard library only!
