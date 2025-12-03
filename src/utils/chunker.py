@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Chunker Utility
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Data chunking utilities for efficient parallel processing
+"""
+
 from typing import List, Any, Iterator
 
 
