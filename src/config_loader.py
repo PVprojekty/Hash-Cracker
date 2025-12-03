@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Configuration Loader
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: JSON configuration file loader with validation
+"""
+
 import json
 import os
 from typing import Dict, Any, Optional
