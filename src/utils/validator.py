@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Validator Utility
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Input validation utilities for hash and data validation
+"""
+
 import re
 from typing import Optional
 
