@@ -23,7 +23,12 @@ from src.utils.validator import Validator
 
 
 class HashCrackingPipeline:
-    """Main pipeline orchestrator for parallel hash cracking."""
+    """
+    Main pipeline orchestrator for parallel hash cracking.
+    
+    Coordinates multiple worker processes to perform parallel hash computation
+    and comparison using the Producer-Consumer pattern.
+    """
     
     def __init__(self, config_path: str = "config.json"):
         self.config_loader = ConfigLoader(config_path)
