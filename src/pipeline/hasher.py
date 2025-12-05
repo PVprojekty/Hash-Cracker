@@ -26,7 +26,7 @@ class Hasher:
     
     def hash(self, data: str, salt: Optional[bytes] = None) -> str:
         """
-        Compute hash of given data.
+        Compute cryptographic hash of given data.
         
         Args:
             data: String to hash
@@ -34,6 +34,9 @@ class Hasher:
         
         Returns:
             Hexadecimal hash string
+        
+        Raises:
+            TypeError: If data is not a string
         """
         if not isinstance(data, str):
             raise TypeError(f"Data must be a string, got {type(data).__name__}")
