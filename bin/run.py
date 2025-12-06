@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Parallel Hash Cracking Engine
-Quick start script with example configuration
+Parallel Hash Cracking Engine - Quick Start Script
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Convenient launcher script with default configuration
 """
 
 import sys
