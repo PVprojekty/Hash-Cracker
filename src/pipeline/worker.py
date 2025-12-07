@@ -68,12 +68,15 @@ class Worker(Process):
     
     def _process_chunk(self, chunk: List[str], hasher: Hasher, logger: Logger) -> None:
         """
-        Process a chunk of data.
+        Process a chunk of data by hashing and comparing.
+        
+        Iterates through each item in the chunk, computes its hash,
+        and compares against the target hash.
         
         Args:
             chunk: List of strings to hash and compare
-            hasher: Hasher instance
-            logger: Logger instance
+            hasher: Hasher instance for hash computation
+            logger: Logger instance for output
         """
         for item in chunk:
             try:
