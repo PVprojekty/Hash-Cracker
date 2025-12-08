@@ -24,10 +24,12 @@ class TaskQueue:
     
     def put(self, task: Any) -> None:
         """
-        Add task to queue.
+        Add task to queue for worker processing.
+        
+        This method is thread-safe and can be called from multiple processes.
         
         Args:
-            task: Task data to add
+            task: Task data to add (typically a chunk of data)
         """
         self.queue.put(task)
         self.tasks_added += 1
