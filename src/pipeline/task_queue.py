@@ -36,13 +36,16 @@ class TaskQueue:
     
     def get(self, timeout: Optional[float] = None) -> Any:
         """
-        Get task from queue.
+        Retrieve and remove task from queue.
+        
+        Blocks until a task is available or timeout expires.
+        Thread-safe for multi-process access.
         
         Args:
-            timeout: Optional timeout in seconds
+            timeout: Optional timeout in seconds (None = wait indefinitely)
         
         Returns:
-            Task data or POISON_PILL
+            Task data or POISON_PILL if queue is terminating
         """
         try:
             task = self.queue.get(timeout=timeout)
