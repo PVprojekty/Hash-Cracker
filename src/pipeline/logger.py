@@ -14,7 +14,12 @@ from datetime import datetime
 
 
 class Logger:
-    """Thread-safe logger with file and console output."""
+    """
+    Thread-safe logger with file and console output.
+    
+    Implements Singleton pattern to ensure single logger instance
+    across all processes. Uses multiprocessing.Lock for thread-safety.
+    """
     
     _instance = None
     _lock = Lock()
