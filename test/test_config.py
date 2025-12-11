@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Configuration Tests
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Unit tests for configuration loader and validation
+"""
+
 import unittest
 import json
 import os
