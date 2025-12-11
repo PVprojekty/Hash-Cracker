@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Hasher Tests
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Unit tests for hash computation engine
+"""
+
 import unittest
 from src.pipeline.hasher import Hasher
 
