@@ -1,3 +1,11 @@
+"""
+Parallel Hash Cracking Engine - Pipeline Tests
+
+Author: Sebastian Lodin
+Date: November 2025
+Description: Integration tests for pipeline components and workflow
+"""
+
 import unittest
 import os
 import json
