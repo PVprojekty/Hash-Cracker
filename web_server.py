@@ -22,7 +22,14 @@ from src.config_loader import ConfigLoader
 
 # Load web server configuration
 def load_web_config():
-    """Load web server configuration"""
+    """
+    Load web server configuration from JSON file.
+    
+    Returns default configuration if file doesn't exist.
+    
+    Returns:
+        dict: Web server configuration dictionary
+    """
     config_path = 'web_config.json'
     if os.path.exists(config_path):
         with open(config_path, 'r', encoding='utf-8') as f:
