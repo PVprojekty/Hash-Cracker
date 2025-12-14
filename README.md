@@ -1,5 +1,11 @@
 # Parallel Hash Cracking Engine
 
+**Author:** Sebastian Lodin  
+**Date:** November 2025  
+**Description:** Professional cybersecurity tool for hash verification using parallel processing
+
+---
+
 Professional cybersecurity tool for secure hash verification and lookup using parallel processing with Python's multiprocessing.
 
 ## Project Description
